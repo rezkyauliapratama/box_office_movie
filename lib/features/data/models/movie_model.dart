@@ -1,4 +1,6 @@
-class MovieModel {
+import 'package:box_office_clean_arch/core/data/base_data.dart';
+
+class MovieModel implements BaseData {
   String _posterPath;
   bool _adult;
   String _overview;

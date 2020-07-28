@@ -1,4 +1,4 @@
-import 'package:box_office_clean_arch/features/data/models/MovieModel.dart';
+import 'package:box_office_clean_arch/features/data/models/movie_model.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 

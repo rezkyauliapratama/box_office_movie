@@ -1,6 +1,6 @@
 import 'package:box_office_clean_arch/core/network/base_api/base_api.dart';
 
-import 'MovieModel.dart';
+import 'movie_model.dart';
 
 class ListMovieModel extends BaseApi {
   int _page;

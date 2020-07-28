@@ -1,5 +1,7 @@
-import 'package:box_office_clean_arch/features/data/models/ListMovieModel.dart';
+import 'package:box_office_clean_arch/features/domain/entities/movie_entity.dart';
 
 abstract class PopularMovieDataSource {
-  Future<ListMovieModel> getPopularMovies();
+  Future<List<MovieEntity>> getPopularMovies();
 }
+
+abstract class PopularMovieDataManager extends PopularMovieDataSource{}
