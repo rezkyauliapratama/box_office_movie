@@ -6,10 +6,10 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
-  final PopularMovieDataManager dataManager;
+  final PopularMovieDataSource dataSource;
 
-  MovieRepositoryImpl({@required PopularMovieDataManager dataManager})
-      : dataManager = dataManager;
+  MovieRepositoryImpl({@required PopularMovieDataSource dataSource})
+      : dataSource = dataSource;
 
   @override
   Future<Either<Failure, List<MovieEntity>>> getPopularMovie(int page) {
