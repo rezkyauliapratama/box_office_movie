@@ -1,3 +1,4 @@
+import 'package:box_office_clean_arch/core/error/exceptions.dart';
 import 'package:box_office_clean_arch/core/error/failures.dart';
 import 'package:box_office_clean_arch/features/data/datasources/popular_movies/popular_movie_datasource.dart';
 import 'package:box_office_clean_arch/features/domain/entities/movie_entity.dart';
@@ -12,7 +13,13 @@ class MovieRepositoryImpl implements MovieRepository {
       : dataSource = dataSource;
 
   @override
-  Future<Either<Failure, List<MovieEntity>>> getPopularMovie(int page) {
-    throw UnimplementedError();
+  Future<Either<Failure, List<MovieEntity>>> getPopularMovie(int page) async {
+    try {
+      final List<MovieEntity> popularMovies = await dataSource.getPopularMovies();
+
+      return Right(popularMovies);
+    } on ServerException {
+      return Left(ServerFailure());
+    }
   }
 }
