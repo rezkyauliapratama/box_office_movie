@@ -1,6 +1,8 @@
+import 'package:box_office_clean_arch/core/error/failures.dart';
 import 'package:box_office_clean_arch/core/usecases/usecase.dart';
 import 'package:box_office_clean_arch/features/domain/entities/movie_entity.dart';
 import 'package:box_office_clean_arch/features/domain/usecases/popular_movie_usecase.dart';
+import 'package:dartz/dartz.dart';
 import 'package:rxdart/rxdart.dart';
 
 class DashboardBloc {
@@ -15,10 +17,13 @@ class DashboardBloc {
 
   Stream<List<MovieEntity>> get popularMovies => _popularMovies.stream;
 
-  fetchPopularMovies() async {
-    final popularMovies = await _getPopularMovieUsecase.execute(NoParams());
-    popularMovies.fold((error) => print("Error $error"),
-        (values) => _popularMovies.add(values));
+  fetchPopularMovies() {
+    _getPopularMovieUsecase
+        .execute(NoParams())
+        .listen((Either<Failure, List<MovieEntity>> event) {
+      event.fold((error) => print("Error $error | ${error.message}"),
+          (values) => _popularMovies.add(values));
+    });
   }
 
   dispose() {

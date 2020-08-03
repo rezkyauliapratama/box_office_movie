@@ -34,7 +34,6 @@ dependencies:
   get_it: ^4.0.4
   #rx_dart
   rxdart: ^0.24.1
-  json_serializable: ^2.2.1
 
 
   # The following adds the Cupertino Icons font to your application.

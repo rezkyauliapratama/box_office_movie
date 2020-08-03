@@ -13,13 +13,10 @@ class MovieRepositoryImpl implements MovieRepository {
       : dataSource = dataSource;
 
   @override
-  Future<Either<Failure, List<MovieEntity>>> getPopularMovie(int page) async {
-    try {
-      final List<MovieEntity> popularMovies = await dataSource.getPopularMovies();
+  Stream<Either<Failure, List<MovieEntity>>> getPopularMovie(int page) async* {
+      final List<MovieEntity> popularMovies =
+          await dataSource.getPopularMovies();
 
-      return Right(popularMovies);
-    } on ServerException {
-      return Left(ServerFailure());
-    }
+      yield Right(popularMovies);
   }
 }

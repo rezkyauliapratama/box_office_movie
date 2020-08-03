@@ -13,15 +13,13 @@ import 'package:get_it/get_it.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
-//  //! Features - Number Trivia
   // Bloc
   sl.registerFactory(
     () => DashboardBloc(sl()),
   );
-//
+
   // Use cases
   sl.registerLazySingleton(() => GetPopularMovieUsecase(sl()));
-//  sl.registerLazySingleton(() => GetRandomNumberTrivia(sl()));
 
   // Repository
   sl.registerLazySingleton<MovieRepository>(
@@ -30,7 +28,7 @@ Future<void> init() async {
 
   // Data sources
   sl.registerLazySingleton<PopularMovieDataSource>(
-    () => MoviesProviderApi(dio: sl()),
+    () => MoviesProviderApi(sl()),
   );
 
   //! Core
